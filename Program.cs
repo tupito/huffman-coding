@@ -6,6 +6,18 @@ namespace Harjtyo_Huffman
 {
     class Program
     {
+
+        /*
+            Write a program to implement Huffman coding and decoding. It should do the following:
+            - Accept a text message, possibly more than one line
+            - Create a Huffman tree for this message                ok
+            - Create a code table                                   ok
+            - Encode the message into a binary
+            - Decode the message from binary back to text 
+
+            You can use String variables to store binary numbers as arrangements of the characters 1 and 0. Don’t worry about actual bit manipulation unless you really want to. 
+         */
+
         static void Main(string[] args)
         {
             string str = "MISSISSIPPIS";
@@ -14,17 +26,15 @@ namespace Harjtyo_Huffman
             Dictionary<char, int> freqs = getFrequencies(str);
 
             // create a hoffman tree
-            CreateHoffmanTree(freqs);
+            CreateHuffmanTree(freqs);
 
-            // TODO:
-            // PUU - VALMIS
-            //  -	Encode the message into a binary
-            //  -   Decode the message from binary back to text
+            //todo: Encode the message into a binary
 
-            // You can use String variables to store binary numbers as arrangements of the characters 1 and 0. Don’t worry about actual bit manipulation unless you really want to. 
+            //todo: Decode the message from binary back to text
+
         }
 
-        static void CreateHoffmanTree(Dictionary<char, int> freqs)
+        static void CreateHuffmanTree(Dictionary<char, int> freqs)
         {
 
             // https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
