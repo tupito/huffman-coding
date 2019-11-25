@@ -18,6 +18,9 @@ namespace Harjtyo_Huffman
             You can use String variables to store binary numbers as arrangements of the characters 1 and 0. Don’t worry about actual bit manipulation unless you really want to. 
          */
 
+        // code table for message
+        public Dictionary<char, string> codeTable = new Dictionary<char, string>();
+
         static void Main(string[] args)
         {
             string str = "MISSISSIPPIS";
@@ -25,8 +28,15 @@ namespace Harjtyo_Huffman
             // get chars and frequencies, order by frequency asc
             Dictionary<char, int> freqs = getFrequencies(str);
 
+            Program p = new Program();
+
+            p.CreateHuffmanTree(freqs);
+
+            Encode(str, p.codeTable);
+
+
             // create a hoffman tree
-            CreateHuffmanTree(freqs);
+            //CreateHuffmanTree(freqs);
 
             //todo: Encode the message into a binary
 
@@ -34,7 +44,22 @@ namespace Harjtyo_Huffman
 
         }
 
-        static void CreateHuffmanTree(Dictionary<char, int> freqs)
+        // encodes message to binary form (really a string)
+        static void Encode(string str, Dictionary<char, string> codeTable)
+        {
+            string encodedMsg = "";
+
+            //chars in string
+            foreach (var c in str)
+            {
+                codeTable.TryGetValue(c, out string bin);
+                encodedMsg += bin + " ";
+            }
+
+            Console.WriteLine(encodedMsg);
+        }
+
+        public void CreateHuffmanTree(Dictionary<char, int> freqs)
         {
 
             // https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
@@ -83,12 +108,15 @@ namespace Harjtyo_Huffman
                 // sort queue, has to be in asc order
                 queue.Sort();
             }
-            // Create code table for message
-            PrintCode(root, "");
+
+            // Code table for message
+            PrintCodes(root, "");
+            StoreCodes(root, "");
         }
 
-        static void PrintCode(HuffmanTreeNode root, string s)
+        static void PrintCodes(HuffmanTreeNode root, string s)
         {
+
             if (root.left == null && root.right == null && Char.IsLetter(root.c) )
             {
                 // c is the character in the node
@@ -97,21 +125,43 @@ namespace Harjtyo_Huffman
             }
 
             //left 0, right 1
-            PrintCode(root.left, s + "0");
-            PrintCode(root.right, s + "1");
+            PrintCodes(root.left, s + "0");
+            PrintCodes(root.right, s + "1");
+        }
+
+        public void StoreCodes(HuffmanTreeNode root, string s)
+        {
+
+            if (root.left == null && root.right == null && Char.IsLetter(root.c))
+            {
+                // codetable char
+                if (!codeTable.ContainsKey(root.c))
+                {
+                    codeTable.Add(root.c, s);
+                }
+                codeTable[root.c] = s;
+                return;
+            }
+
+            //left 0, right 1
+            StoreCodes(root.left, s + "0");
+            StoreCodes(root.right, s + "1");
         }
 
 
         static Dictionary<char,int> getFrequencies(string str)
         {
+            // frequency for every char
             Dictionary<char, int> freqs = new Dictionary<char, int>();
 
+            // loop string
             foreach (var item in str)
             {
+                // new char found
                 if (!freqs.ContainsKey(item)) {
                     freqs.Add(item, 0);
                 }
-                freqs[item]++;
+                freqs[item]++; // add to char counter
             }
 
             return orderedDictionary(freqs);
@@ -120,6 +170,8 @@ namespace Harjtyo_Huffman
         static Dictionary<char,int> orderedDictionary(Dictionary<char, int> dict)
         {
             Dictionary<char, int> orderedDict = new Dictionary<char, int>();
+            
+            //  Dictionary to ascending order
             foreach (var item in dict.OrderBy(i => i.Value ))
             {
                 orderedDict.Add(item.Key, item.Value);
