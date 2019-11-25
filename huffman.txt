@@ -1,0 +1,38 @@
+https://en.wikipedia.org/wiki/Huffman_coding
+
+https://www.geeksforgeeks.org/huffman-decoding/
+
+https://www.geeksforgeeks.org/practice-questions-on-huffman-encoding/
+
+https://mitpress.mit.edu/sites/default/files/sicp/full-text/sicp/book/node41.html
+
+
+* Huffman Coding in Algorithms | Explained Step by Step | Numerical Problems 42 min
+* https://www.youtube.com/watch?v=NifsPZ5fLlg
+
+Huffman Coding | GeeksforGeeks 9min: 
+* https://www.youtube.com/watch?v=0kNXhFIEd_w&feature=youtu.be&t=122
+
+
+192.168.37.130 root Salasana123
+https://192.168.37.134:5480 root vmware
+
+
+# creating a tree
+
+* character frequency
+
+* create a tree
+** new internalnode (left child, right child)
+** https://youtu.be/0kNXhFIEd_w?t=122
+
+* creating a tree code example: https://youtu.be/0kNXhFIEd_w?t=443
+
+
+
+1) character frequency
+2) order by frequency asc
+3) make tree (lower = left child, higher = right child)
+
+
+
