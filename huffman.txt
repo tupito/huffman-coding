@@ -60,5 +60,10 @@ https://192.168.37.134:5480 root vmware
 ** https://www.dcode.fr/huffman-tree-compression
 
 * kooditoteutus tehty n‰iden pohjalta
-** Huffman-puu: https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
+** Huffman-puun luonti: https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
+** dekoodaus: https://www.geeksforgeeks.org/huffman-decoding/
+
+
+* ohjelman vaiheet
+** otetaan talteen input-stringin merkit ja kunkin merkin lukum‰‰r‰t, j‰rjestet‰‰n pienimm‰st‰ suurimpaan (Dictionary<char, int> charFreqs)
 
