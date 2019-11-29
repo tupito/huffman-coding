@@ -13,6 +13,18 @@ https://mitpress.mit.edu/sites/default/files/sicp/full-text/sicp/book/node41.htm
 Huffman Coding | GeeksforGeeks 9min: 
 * https://www.youtube.com/watch?v=0kNXhFIEd_w&feature=youtu.be&t=122
 
+https://www.dcode.fr/huffman-tree-compression
+
+
+encoding: https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
+decoding: https://www.geeksforgeeks.org/huffman-decoding/
+
+http://home.cse.ust.hk/faculty/golin/COMP271Sp03/Notes/MyL17.pdf
+
+tree generators:
+https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
+http://huffman.ooz.ie/
+
 
 192.168.37.130 root Salasana123
 https://192.168.37.134:5480 root vmware
@@ -35,4 +47,18 @@ https://192.168.37.134:5480 root vmware
 3) make tree (lower = left child, higher = right child)
 
 
+
+**Raportointi*****************************
+
+* Algoritmin opiskeluun käytetyt materiaalit:
+** https://en.wikipedia.org/wiki/Huffman_coding
+** https://www.youtube.com/watch?v=0kNXhFIEd_w&feature=youtu.be&t=122
+** http://home.cse.ust.hk/faculty/golin/COMP271Sp03/Notes/MyL17.pdf
+
+* testaamisessa käytetyt sivustot (paperille piirtämisen lisäksi)
+** https://people.ok.ubc.ca/ylucet/DS/Huffman.html
+** https://www.dcode.fr/huffman-tree-compression
+
+* kooditoteutus tehty näiden pohjalta
+** Huffman-puu: https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
 

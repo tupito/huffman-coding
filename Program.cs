@@ -21,31 +21,56 @@ namespace Harjtyo_Huffman
         // code table for message
         public Dictionary<char, string> codeTable = new Dictionary<char, string>();
 
+        public HuffmanTreeNode top;
+
         static void Main(string[] args)
         {
-            string str = "MISSISSIPPIS";
+            string inputStr = "MISSISSIPPIS";
+            Console.WriteLine("Input:\t\t " + inputStr);
 
             // get chars and frequencies, order by frequency asc
-            Dictionary<char, int> freqs = getFrequencies(str);
+            Dictionary<char, int> freqs = getFrequencies(inputStr);
 
             Program p = new Program();
 
-            p.CreateHuffmanTree(freqs);
+            p.CreateHuffmanTreeAndStoreCodes(freqs);
 
-            Encode(str, p.codeTable);
+            string encodedStr = Encode(inputStr, p.codeTable);
+            Console.WriteLine("\nEncoded: \t" + encodedStr);
 
+            string decodedStr = Decode(p.top, encodedStr);
+            Console.WriteLine("\nDecoded: \t" + decodedStr);
+        }
 
-            // create a hoffman tree
-            //CreateHuffmanTree(freqs);
+        // function iterates through the encoded string s 
+        // if s[i]=='1' then move to node->right 
+        // if s[i]=='0' then move to node->left 
+        // if leaf node append the node->data to our output string 
+        static string Decode(HuffmanTreeNode root, string encodedStr)
+        {
+            string ans = "";
+            HuffmanTreeNode curr = root;
 
-            //todo: Encode the message into a binary
+            // loop encoded str
+            for (int i = 0; i < encodedStr.Length; i++)
+            {
+                if (encodedStr[i] == '0')
+                    curr = curr.left;
+                else
+                    curr = curr.right;
 
-            //todo: Decode the message from binary back to text
-
+                // reached leaf node
+                if (curr.left == null && curr.right == null)
+                {
+                    ans += curr.c;
+                    curr = root;
+                }
+            }
+            return ans;
         }
 
         // encodes message to binary form (really a string)
-        static void Encode(string str, Dictionary<char, string> codeTable)
+        static string Encode(string str, Dictionary<char, string> codeTable)
         {
             string encodedMsg = "";
 
@@ -53,19 +78,21 @@ namespace Harjtyo_Huffman
             foreach (var c in str)
             {
                 codeTable.TryGetValue(c, out string bin);
-                encodedMsg += bin + " ";
+                encodedMsg += bin;
             }
 
-            Console.WriteLine(encodedMsg);
+            return encodedMsg;
         }
 
-        public void CreateHuffmanTree(Dictionary<char, int> freqs)
+        public void CreateHuffmanTreeAndStoreCodes(Dictionary<char, int> freqs)
         {
 
             // https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
 
             // HuffmanQueue
             List<HuffmanTreeNode> queue = new List<HuffmanTreeNode>();
+
+            Console.WriteLine("\nHuffman tree:");
 
             foreach (var item in freqs)
             {
@@ -102,6 +129,9 @@ namespace Harjtyo_Huffman
                 // new node is now root node
                 root = f;
 
+                
+                top = root; // FOR DECODE
+
                 // new node to the queue
                 queue.Add(f);
 
@@ -110,8 +140,8 @@ namespace Harjtyo_Huffman
             }
 
             // Code table for message
-            PrintCodes(root, "");
-            StoreCodes(root, "");
+            PrintCodes(root, ""); // to console 
+            StoreCodes(root, ""); // to dict
         }
 
         static void PrintCodes(HuffmanTreeNode root, string s)
