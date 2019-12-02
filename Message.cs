@@ -25,14 +25,14 @@ namespace Harjtyo_Huffman
             for (int i = 0; i < encodedStr.Length; i++)
             {
                 if (encodedStr[i] == '0')  // move to left
-                    curr = curr.left;
+                    curr = curr.Left;
                 else
-                    curr = curr.right; // move to right
+                    curr = curr.Right; // move to right
 
                 // reached leaf node
-                if (curr.left == null && curr.right == null)
+                if (curr.Left == null && curr.Right == null)
                 {
-                    ans += curr.c;
+                    ans += curr.Char;
                     curr = root;
                 }
             }

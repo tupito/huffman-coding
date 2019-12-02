@@ -12,7 +12,7 @@ namespace Harjtyo_Huffman
             - Create a code table
             - Encode the message into a binary
             - Decode the message from binary back to text 
-            es
+            
             You can use String variables to store binary numbers as arrangements of the characters 1 and 0. Don’t worry about actual bit manipulation unless you really want to. 
          */
 
